@@ -2,26 +2,26 @@ import { useUrlManagement } from '../hooks/useUrlManagement';
 import { logger } from '../services/logger';
 
 interface ShortenButtonProps {
-  className?: string;
+    className?: string;
 }
 
 export function ShortenButton({ className = '' }: ShortenButtonProps) {
-  const { shortenUrls, isLoading, urlList } = useUrlManagement();
+    const { shortenUrls, isLoading, urlList } = useUrlManagement();
 
-  const handleClick = () => {
-    shortenUrls();
-    logger.info('component', 'ShortenButton: Button clicked');
-  };
+    const handleClick = () => {
+        shortenUrls();
+        logger.info('component', 'ShortenButton: Button clicked');
+    };
 
-  logger.debug('component', 'ShortenButton component rendered');
+    logger.debug('component', 'ShortenButton component rendered');
 
-  return (
-    <button 
-      className={`main-btn ${className}`} 
-      onClick={handleClick}
-      disabled={isLoading || urlList.length === 0}
-    >
-      {isLoading ? 'Shortening...' : 'Shorten URLs'}
-    </button>
-  );
+    return (
+        <button
+            className={`main-btn ${className}`}
+            onClick={handleClick}
+            disabled={isLoading || urlList.length === 0}
+        >
+            {isLoading ? 'Shortening...' : 'Shorten URLs'}
+        </button>
+    );
 }
