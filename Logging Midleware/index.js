@@ -1,5 +1,4 @@
 
-
 const LOG_API_URL = "http://20.244.56.144/evaluation-service/logs";
 
 // Define the valid values for stack, level, and package based on the requirements.
@@ -38,7 +37,7 @@ function validateInputs(stack, level, pkg) {
 }
 
 
-export async function Log(stack, level, pkg, message) {
+async function Log(stack, level, pkg, message) {
   const validationError = validateInputs(stack, level, pkg);
   if (validationError) {
     // Instead of logging to the API, we'll log the validation error to the console
@@ -75,3 +74,6 @@ export async function Log(stack, level, pkg, message) {
     console.error("Network error while trying to send log to API:", error);
   }
 }
+
+// Export for CommonJS compatibility
+module.exports = { Log };
