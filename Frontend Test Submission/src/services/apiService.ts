@@ -2,15 +2,14 @@ import { logger } from './logger';
 
 const API_BASE_URL = 'http://localhost:3001';
 
-// Types for API requests and responses (matching backend structure)
 export interface CreateUrlRequest {
-  url: string;           // Backend expects 'url', not 'longUrl'
-  validity?: number;     // Backend expects 'validity', not 'validityPeriod'
-  shortcode?: string;    // Backend expects 'shortcode', not 'customShortcode'
+  url: string;
+  validity?: number;
+  shortcode?: string;
 }
 
 export interface ShortenedUrlResponse {
-  shortLink: string;     // Backend returns this format
+  shortLink: string;
   expiry: string;
 }
 
@@ -28,7 +27,7 @@ export interface UrlStatistics {
   expiry: string;
   totalClicks: number;
   isExpired: boolean;
-  clicks?: ClickData[]; // Optional for basic stats, included for detailed stats
+  clicks?: ClickData[];
 }
 
 class ApiService {

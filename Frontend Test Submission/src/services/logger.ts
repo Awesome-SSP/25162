@@ -1,4 +1,3 @@
-// Import the centralized logging function
 // @ts-ignore: Allow import from JS file
 import { Log } from '../../../Logging Midleware/index.js';
 
@@ -8,10 +7,8 @@ type FrontendPackage = 'api' | 'component' | 'hook' | 'page' | 'state' | 'style'
 class FrontendLogger {
   private async logWithCentralized(level: LogLevel, pkg: FrontendPackage, message: string): Promise<void> {
     try {
-      // Use the centralized logging function
       await Log('frontend', level, pkg, message);
     } catch (error) {
-      // Fallback to console if centralized logging fails
       console.error('Centralized logging failed:', error);
       console.log(`[${level.toUpperCase()}] [frontend] [${pkg}] ${message}`);
     }
@@ -37,14 +34,10 @@ class FrontendLogger {
     this.logWithCentralized('fatal', pkg, message);
   }
 
-  /**
-   * Get list of valid packages for frontend
-   */
   getValidPackages(): string[] {
     return ['api', 'component', 'hook', 'page', 'state', 'style', 'auth', 'config', 'middleware', 'utils'];
   }
 }
 
-// Export singleton instance and raw Log function
 export const logger = new FrontendLogger();
 export { Log };

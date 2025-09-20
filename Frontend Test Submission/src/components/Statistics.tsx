@@ -180,7 +180,7 @@ export const Statistics: React.FC = () => {
                             const status = getStatusBadge(url.expiry);
                             const isExpanded = expandedUrls.has(url.shortcode);
                             const detailed = detailedStats.get(url.shortcode);
-                            
+
                             return (
                                 <div key={url.shortcode || index} className="table-row-container">
                                     <div className="table-row">
@@ -244,7 +244,7 @@ export const Statistics: React.FC = () => {
                                             </button>
                                         </div>
                                     </div>
-                                    
+
                                     {/* Detailed Click Information */}
                                     {isExpanded && detailed && (
                                         <div className="click-details">
@@ -279,7 +279,7 @@ export const Statistics: React.FC = () => {
                                             )}
                                         </div>
                                     )}
-                                    
+
                                     {isExpanded && !detailed && (
                                         <div className="click-details">
                                             <div className="loading-details">

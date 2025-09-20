@@ -500,6 +500,7 @@
 
 /* Responsive styles for click details */
 @media (max-width: 768px) {
+
     .clicks-header,
     .click-item {
         grid-template-columns: 1fr;
