@@ -6,10 +6,10 @@ import './UrlForm.css';
 
 export const UrlForm: React.FC = () => {
   const { state } = useAppContext();
-  const { 
-    addUrlEntry, 
-    removeUrlEntry, 
-    updateUrlEntry, 
+  const {
+    addUrlEntry,
+    removeUrlEntry,
+    updateUrlEntry,
     submitUrls
   } = useUrlForm();
 
@@ -20,7 +20,7 @@ export const UrlForm: React.FC = () => {
 
   const canAddMore = state.urlEntries.length < 5;
   const canRemove = state.urlEntries.length > 1;
-  const hasValidEntries = state.urlEntries.some(entry => 
+  const hasValidEntries = state.urlEntries.some(entry =>
     entry.longUrl.trim() && !Object.values(entry.errors).some(error => error)
   );
 
@@ -118,13 +118,13 @@ export const UrlForm: React.FC = () => {
         <div className="results-section">
           <h3>Shortened URLs</h3>
           {state.shortenedUrls.map((url, index) => (
-            <div key={url.id || index} className="url-result">
+            <div key={url.shortLink || index} className="url-result">
               {url.status === 'success' ? (
                 <div className="result-success">
                   <strong>Short URL:</strong>
-                  <a 
-                    href={url.shortLink} 
-                    target="_blank" 
+                  <a
+                    href={url.shortLink}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="short-url-link"
                   >

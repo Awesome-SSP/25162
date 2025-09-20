@@ -11,7 +11,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [],
       },
-    }).concat((store) => (next) => (action) => {
+    }).concat((_store: any) => (next: any) => (action: any) => {
       logger.debug('state', `Redux action dispatched: ${action.type}`);
       return next(action);
     }),

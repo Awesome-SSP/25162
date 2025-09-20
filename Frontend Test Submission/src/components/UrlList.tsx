@@ -1,5 +1,4 @@
 import { useUrlManagement } from '../hooks/useUrlManagement';
-import { UrlItem } from '../context/AppContext';
 import { logger } from '../services/logger';
 
 interface UrlListProps {
@@ -7,29 +6,29 @@ interface UrlListProps {
 }
 
 export function UrlList({ className = '' }: UrlListProps) {
-    const { urlList, removeUrl } = useUrlManagement();
+    const { urlEntries, removeUrl } = useUrlManagement();
 
-    const handleRemoveUrl = (id: number) => {
+    const handleRemoveUrl = (id: string) => {
         removeUrl(id);
-        logger.info('component', `UrlList: URL removed with id ${id}`);
+        logger.info('component', `UrlList: Remove URL requested for id: ${id}`);
     };
 
-    logger.debug('component', `UrlList component rendered with ${urlList.length} URLs`);
+    logger.debug('component', `UrlList component rendered with ${urlEntries.length} URL entries`);
 
-    if (urlList.length === 0) {
+    if (urlEntries.length === 0) {
         return null;
     }
 
     return (
         <div className={`url-list ${className}`}>
-            {urlList.map((url: UrlItem) => (
-                <div key={url.id} className="url-item">
-                    <div className="url-display">{url.url}</div>
+            {urlEntries.map((entry) => (
+                <div key={entry.id} className="url-item">
+                    <div className="url-display">{entry.longUrl}</div>
                     <div className="url-info">
-                        <p>Long URL - {url.code}</p>
-                        <p>Validity: {url.time}</p>
+                        <p>Long URL - {entry.customShortcode || 'Auto-generated'}</p>
+                        <p>Validity: {entry.validityPeriod || 'Default'} minutes</p>
                         <button
-                            onClick={() => handleRemoveUrl(url.id)}
+                            onClick={() => handleRemoveUrl(entry.id.toString())}
                             className="remove-btn"
                         >
                             Remove URL

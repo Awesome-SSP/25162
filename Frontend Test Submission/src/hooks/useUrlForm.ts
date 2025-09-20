@@ -141,9 +141,9 @@ export function useUrlForm() {
     try {
       const promises = validEntries.map(async (entry) => {
         const request: CreateUrlRequest = {
-          longUrl: entry.longUrl,
-          validityPeriod: entry.validityPeriod ? parseInt(entry.validityPeriod, 10) : undefined,
-          customShortcode: entry.customShortcode || undefined,
+          url: entry.longUrl,
+          validity: entry.validityPeriod ? parseInt(entry.validityPeriod, 10) : undefined,
+          shortcode: entry.customShortcode || undefined,
         };
 
         logger.info('hook', `Submitting URL: ${entry.longUrl}`);
@@ -160,11 +160,8 @@ export function useUrlForm() {
           dispatch({ 
             type: 'ADD_SHORTENED_URL', 
             payload: { 
-              id: `error-${Date.now()}`,
-              shortLink: '',
-              originalUrl: entry.longUrl,
+              shortLink: `error-${Date.now()}`,
               expiry: '',
-              createdAt: new Date().toISOString(),
               status: 'error',
               errorMessage 
             } 

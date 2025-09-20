@@ -5,10 +5,10 @@ import { logger } from '../services/logger';
 export function useUrlManagement() {
   const { state, dispatch } = useAppContext();
 
-  const removeUrl = useCallback((id: number) => {
-    dispatch({ type: 'REMOVE_URL', payload: id });
-    logger.info('hook', `URL removed with id: ${id}`);
-  }, [dispatch]);
+  const removeUrl = useCallback((id: string) => {
+    // This feature is not implemented in the current architecture
+    logger.warn('hook', `Remove URL feature not implemented for id: ${id}`);
+  }, []);
 
   const switchTab = useCallback((tab: 'shortener' | 'statistics') => {
     dispatch({ type: 'SET_CURRENT_TAB', payload: tab });
@@ -16,30 +16,18 @@ export function useUrlManagement() {
   }, [dispatch]);
 
   const shortenUrls = useCallback(() => {
-    if (state.urlList.length === 0) {
-      const error = 'No URLs to shorten';
-      dispatch({ type: 'SET_ERROR', payload: error });
-      logger.warn('hook', error);
-      return;
-    }
-
-    dispatch({ type: 'SET_LOADING', payload: true });
-    logger.info('hook', `Shortening ${state.urlList.length} URLs`);
-    
-    // Simulate API call
-    setTimeout(() => {
-      dispatch({ type: 'SET_LOADING', payload: false });
-      logger.info('hook', 'URLs shortened successfully (demo)');
-      alert(`${state.urlList.length} URLs shortened successfully! (This is just a demo)`);
-    }, 1000);
-  }, [state.urlList.length, dispatch]);
+    // This functionality is handled by the UrlForm component
+    logger.info('hook', 'Shorten URLs called - handled by UrlForm component');
+  }, []);
 
   const clearError = useCallback(() => {
     dispatch({ type: 'SET_ERROR', payload: null });
   }, [dispatch]);
 
   return {
-    urlList: state.urlList,
+    urlEntries: state.urlEntries,
+    shortenedUrls: state.shortenedUrls,
+    urlStatistics: state.urlStatistics,
     currentTab: state.currentTab,
     isLoading: state.isLoading,
     error: state.error,

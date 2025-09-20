@@ -6,7 +6,7 @@ interface ShortenButtonProps {
 }
 
 export function ShortenButton({ className = '' }: ShortenButtonProps) {
-    const { shortenUrls, isLoading, urlList } = useUrlManagement();
+    const { shortenUrls, isLoading, urlEntries } = useUrlManagement();
 
     const handleClick = () => {
         shortenUrls();
@@ -19,7 +19,7 @@ export function ShortenButton({ className = '' }: ShortenButtonProps) {
         <button
             className={`main-btn ${className}`}
             onClick={handleClick}
-            disabled={isLoading || urlList.length === 0}
+            disabled={isLoading || urlEntries.length === 0}
         >
             {isLoading ? 'Shortening...' : 'Shorten URLs'}
         </button>

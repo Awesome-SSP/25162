@@ -22,7 +22,7 @@ const mockLocations = [
 
 // Middleware setup
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://127.0.0.1:3000'], // Frontend origins
+    origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:5173', 'http://127.0.0.1:5173'], // Frontend origins
     credentials: true
 }));
 app.use(express.json());

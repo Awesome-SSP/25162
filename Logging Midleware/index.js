@@ -1,6 +1,9 @@
 
 const LOG_API_URL = "http://20.244.56.144/evaluation-service/logs";
 
+// Authentication token - can be set via environment variable or hardcoded for testing
+const AUTH_TOKEN = process.env.LOGGING_AUTH_TOKEN || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYXBDbGFpbXMiOnsiYXVkIjoiaHR0cDovLzIwLjI0NC41Ni4xNDQvZXZhbHVhdGlvbi1zZXJ2aWNlIiwiZW1haWwiOiJzYXVyYWJocGFybWFyMjA1QGdtYWlsLmNvbSIsImV4cCI6MTc1ODM1MTgzOSwiaWF0IjoxNzU4MzUwOTM5LCJpc3MiOiJBZmZvcmQgTWVkaWNhbCBUZWNobm9sb2dpZXMgUHJpdmF0ZSBMaW1pdGVkIiwianRpIjoiMDU5N2YyMmItOTJlNi00MDAzLWFlODUtOGNhNzExZTcwNzQ1IiwibG9jYWxlIjoiZW4tSU4iLCJuYW1lIjoic2F1cmFiaCBzaW5naCBwYXJtYXIiLCJzdWIiOiI4NzIxMTk2OC0zNWVlLTRmNjAtYTc4NS1iMmY1MmNjMWE5Y2UifSwiZW1haWwiOiJzYXVyYWJocGFybWFyMjA1QGdtYWlsLmNvbSIsIm5hbWUiOiJzYXVyYWJoIHNpbmdoIHBhcm1hciIsInJvbGxObyI6IjI1MTYyIiwiYWNjZXNzQ29kZSI6InJEbmV6ZiIsImNsaWVudElEIjoiODcyMTE5NjgtMzVlZS00ZjYwLWE3ODUtYjJmNTJjYzFhOWNlIiwiY2xpZW50U2VjcmV0IjoiZFNGTmpXZG5wQWJ3eVZFbiJ9.UURdH2tBQ1AZPmiWJPwHIr5Qounjh5ZMuXhuMZ4HhxY";
+
 // Define the valid values for stack, level, and package based on the requirements.
 const VALID_STACKS = ["backend", "frontend"];
 const VALID_LEVELS = ["debug", "info", "warn", "error", "fatal"];
@@ -58,6 +61,7 @@ async function Log(stack, level, pkg, message) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${AUTH_TOKEN}`
       },
       body: JSON.stringify(logPayload),
     });

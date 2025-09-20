@@ -1,37 +1,34 @@
 import { logger } from './logger';
 
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = 'http://localhost:3001';
 
-// Types for API requests and responses
+// Types for API requests and responses (matching backend structure)
 export interface CreateUrlRequest {
-  longUrl: string;
-  validityPeriod?: number;
-  customShortcode?: string;
+  url: string;           // Backend expects 'url', not 'longUrl'
+  validity?: number;     // Backend expects 'validity', not 'validityPeriod'
+  shortcode?: string;    // Backend expects 'shortcode', not 'customShortcode'
 }
 
 export interface ShortenedUrlResponse {
-  id: string;
-  shortLink: string;
-  originalUrl: string;
+  shortLink: string;     // Backend returns this format
   expiry: string;
-  customShortcode?: string;
-  createdAt: string;
 }
 
 export interface ClickData {
   timestamp: string;
-  referrer: string;
-  userAgent?: string;
+  source: string;
+  location: string;
 }
 
 export interface UrlStatistics {
-  id: string;
   shortLink: string;
-  originalUrl: string;
+  longUrl: string;
+  shortcode: string;
   createdAt: string;
   expiry: string;
   totalClicks: number;
-  clickDetails: ClickData[];
+  isExpired: boolean;
+  clicks?: ClickData[]; // Optional for basic stats, included for detailed stats
 }
 
 class ApiService {
@@ -70,7 +67,7 @@ class ApiService {
   }
 
   async createShortUrl(request: CreateUrlRequest): Promise<ShortenedUrlResponse> {
-    logger.info('api', `Creating short URL for: ${request.longUrl}`);
+    logger.info('api', `Creating short URL for: ${request.url}`);
     
     return this.makeRequest<ShortenedUrlResponse>('/shorturls', {
       method: 'POST',
@@ -84,10 +81,11 @@ class ApiService {
     return this.makeRequest<UrlStatistics[]>('/shorturls');
   }
 
-  async getUrlStatistics(shortId: string): Promise<UrlStatistics> {
-    logger.info('api', `Fetching statistics for URL: ${shortId}`);
+  async getUrlStatistics(shortcode: string): Promise<UrlStatistics> {
+    logger.info('api', `Fetching detailed statistics for URL: ${shortcode}`);
     
-    return this.makeRequest<UrlStatistics>(`/shorturls/${shortId}/stats`);
+    // Use individual endpoint that returns detailed click data
+    return this.makeRequest<UrlStatistics>(`/shorturls/${shortcode}`);
   }
 
   // Validation helpers

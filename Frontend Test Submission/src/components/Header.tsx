@@ -1,4 +1,3 @@
-import React from 'react';
 import { useUrlManagement } from '../hooks/useUrlManagement';
 import { logger } from '../services/logger';
 
