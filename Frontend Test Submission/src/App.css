@@ -1,0 +1,222 @@
+.app {
+  width: 100%;
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+.container {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 30px;
+  color: white;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.tab {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.tab.active {
+  background-color: blue;
+}
+
+.content {
+  text-align: center;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.url-input {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.url-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.left-side {
+  text-align: left;
+}
+
+.small {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 15px;
+}
+
+.time-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.time-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid white;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.time-btn.selected {
+  background-color: blue;
+}
+
+.remove-btn {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.url-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.url-display {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.url-info {
+  text-align: left;
+}
+
+.bottom-section {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.custom-input {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.custom-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.add-btn {
+  background-color: blue;
+  border: none;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.main-btn {
+  background-color: blue;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.main-btn:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+/* Error handling */
+.error-banner {
+  background-color: rgba(255, 0, 0, 0.2);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  color: #fca5a5;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error-close {
+  background: none;
+  border: none;
+  color: #fca5a5;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.error-message {
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  color: #fca5a5;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Statistics placeholder */
+.stats-placeholder {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.stats-placeholder p {
+  margin: 10px 0;
+  font-size: 16px;
+  opacity: 0.8;
+}
